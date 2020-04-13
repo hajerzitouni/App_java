@@ -3,9 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Hajer/Documents/NetBeansProjects/Application1/src/application1/velooService.java</file>
+            <file>file:/C:/Users/Hajer/Documents/NetBeansProjects/Application1/src/gui/AfficherlocationController.java</file>
+            <file>file:/C:/Users/Hajer/Documents/NetBeansProjects/Application1/src/gui/AfficherveloController.java</file>
+            <file>file:/C:/Users/Hajer/Documents/NetBeansProjects/Application1/src/gui/locationController.java</file>
+            <file>file:/C:/Users/Hajer/Documents/NetBeansProjects/Application1/src/gui/afficherlocation.fxml</file>
+            <file>file:/C:/Users/Hajer/Documents/NetBeansProjects/Application1/src/gui/VeloController.java</file>
+            <file>file:/C:/Users/Hajer/Documents/NetBeansProjects/Application1/src/application1/location.java</file>
             <file>file:/C:/Users/Hajer/Documents/NetBeansProjects/Application1/src/application1/veloo.java</file>
+            <file>file:/C:/Users/Hajer/Documents/NetBeansProjects/Application1/src/application1/velooService.java</file>
+            <file>file:/C:/Users/Hajer/Documents/NetBeansProjects/Application1/src/gui/ModifierlocationController.java</file>
+            <file>file:/C:/Users/Hajer/Documents/NetBeansProjects/Application1/src/gui/affichervelo.fxml</file>
             <file>file:/C:/Users/Hajer/Documents/NetBeansProjects/Application1/src/application1/Application1.java</file>
+            <file>file:/C:/Users/Hajer/Documents/NetBeansProjects/Application1/src/gui/modifierlocation.fxml</file>
         </group>
     </open-files>
 </project-private>

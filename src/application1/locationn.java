@@ -10,7 +10,7 @@ import java.sql.Date;
  *
  * @author Hajer
  */
-public class location {
+public class locationn {
 
     
 
@@ -21,15 +21,23 @@ public class location {
     private Integer velo_id ;
     private Date date_debut ;
     private Date date_fin ;
+
+    public locationn(Date date_debut, Date date_fin, String nomlocation) {
+        this.date_debut = date_debut;
+        this.date_fin = date_fin;
+        this.nomlocation = nomlocation;
+    }
+
+    
     private String nomlocation ;
 
     
     private Integer prixloc ;
     
-     public location() {
+     public locationn() {
     }
     
-     public location(Integer id, Integer user_id, Integer velo_id, Date date_debut, Date date_fin, String nomlocation, Integer prixloc) {
+     public locationn(Integer id, Integer user_id, Integer velo_id, Date date_debut, Date date_fin, String nomlocation, Integer prixloc) {
         this.id = id;
         this.user_id = user_id;
         this.velo_id = velo_id;
@@ -38,7 +46,7 @@ public class location {
         this.nomlocation = nomlocation;
         this.prixloc = prixloc;
     }
-     public location(Integer user_id, Integer velo_id, Date date_debut, Date date_fin, String nomlocation, Integer prixloc) {
+     public locationn(Integer user_id, Integer velo_id, Date date_debut, Date date_fin, String nomlocation, Integer prixloc) {
         this.user_id = user_id;
         this.velo_id = velo_id;
         this.date_debut = date_debut;
@@ -46,6 +54,21 @@ public class location {
         this.nomlocation = nomlocation;
         this.prixloc = prixloc;
     }
+     public locationn(Integer velo_id, Date date_debut, Date date_fin, String nomlocation) {
+        this.velo_id = velo_id;
+        this.date_debut = date_debut;
+        this.date_fin = date_fin;
+        this.nomlocation = nomlocation;
+    }
+     
+    public locationn(Integer id, Integer velo_id, Date date_debut, Date date_fin, String nomlocation) {
+        this.id = id;
+        this.velo_id = velo_id;
+        this.date_debut = date_debut;
+        this.date_fin = date_fin;
+        this.nomlocation = nomlocation;
+    }
+
     public Integer getId() {
         return id;
     }

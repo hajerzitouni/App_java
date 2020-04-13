@@ -33,7 +33,7 @@ public class velooService {
     }
     
   
-    public void  ajouter(veloo v) throws SQLException {   
+    public void  ajouter(velo v) throws SQLException {   
         //boolean b = false;
         //try {
         //String req = "INSERT INTO velo (`user_id` ,`prix`,`marque`,`type`,`nomimage`, `age`, `etat`, `nomvelo`) VALUES ('"+v.getUser_id()+"','"+v.getPrix()+"','"+v.getMarque()+"','"+v.getType()
@@ -51,27 +51,38 @@ public class velooService {
         //return b;
          
 
-  public void ajouter2(veloo v) throws SQLException {
-        String req = "INSERT INTO `veloo` (nom,prix,age,marque ) VALUES ( ?,?,?,?) ";
+  public void ajouter2(velo v) throws SQLException {
+        String req = "INSERT INTO `velo` (nomvelo,prix,age,marque,image ) VALUES ( ?,?,?,?,?) ";
         PreparedStatement pstm = con.prepareStatement(req);
-        pstm.setString(1, "mo");
-         pstm.setInt(2, 200);
+        pstm.setString(1, v.getNom());
+        pstm.setInt(2, v.getPrix());
+        pstm.setInt(3, v.getAge());
+         pstm.setString(4, v.getMarque());
+         pstm.setString(5,v.getImage());
+        
         pstm.executeUpdate();
     }
 
-public List<veloo> getAllveloos()throws SQLException  {
+public List<velo> getAllveloos()throws SQLException  {
 
-        List<veloo> veloos = new ArrayList<>();
+        List<velo> veloos = new ArrayList<>();
 
-            String req = "SELECT * FROM veloo";
+            String req = "SELECT * FROM velo";
             Statement stm = con.createStatement();
             ResultSet rs = stm.executeQuery(req);
             while (rs.next()) {
-             veloo v = new veloo (rs.getInt(1),
-                                 rs.getString("nom"),
+         
+            velo v = new velo (rs.getInt(1),
+                     
+                        
+           
+                                 rs.getString("nomvelo"),
                                  rs.getInt("prix"),
                                  rs.getInt("age"),
-                                 rs.getString("marque"));
+                                 rs.getString("marque"),
+                                 
+                                  rs.getString("Image"),
+                                 rs.getInt("etat"));
              
              
                       veloos.add(v);
@@ -80,14 +91,14 @@ public List<veloo> getAllveloos()throws SQLException  {
         return veloos;
     }
  public void delete(int id) throws SQLException {
-        PreparedStatement pre= con.prepareStatement("delete from veloo where Id=?"); //executer une requette parametrer.
+        PreparedStatement pre= con.prepareStatement("delete from velo where Id=?"); //executer une requette parametrer.
 		pre.setInt(1, id);
 		pre.executeUpdate();
                    System.out.println("User deleted ...");     
         
     }
        public void modifier(int Id,String Nom) {
-     String sql = "UPDATE   veloo SET `Nom`='"+Nom+ "'  WHERE Id='"+Id+"' ";
+     String sql = "UPDATE   velo SET `Nom`='"+Nom+ "'  WHERE Id='"+Id+"' ";
 
         PreparedStatement st;
         try {
@@ -102,11 +113,11 @@ public List<veloo> getAllveloos()throws SQLException  {
         }
        }
 
-       public ObservableList<veloo> recherche(String Nom , Integer prix , Integer age , String marque) {
+       public ObservableList<velo> recherche(String Nom , Integer prix , Integer age , String marque) {
         
-        String requete = "SELECT * FROM  veloo where nom = '"+Nom+"' " ;
+        String requete = "SELECT * FROM  velo where nom = '"+Nom+"' " ;
         PreparedStatement pst;
-        ObservableList<veloo> list= FXCollections.observableArrayList();
+        ObservableList<velo> list= FXCollections.observableArrayList();
             
 
         try {
@@ -119,7 +130,7 @@ public List<veloo> getAllveloos()throws SQLException  {
                String nom=rs.getString("nom");
                
               
-               veloo  v =new veloo (id, nom,prix,age,marque);
+               velo  v =new velo (id, nom,prix,age,marque);
             list.add(v);
             }
             
@@ -132,13 +143,13 @@ public List<veloo> getAllveloos()throws SQLException  {
     }
        public void accepter(){
        
-           String sql = "select * from veloo join location on velo.id = location.velo_id";
+           String sql = "select * from velo join location on velo.id = location.velo_id";
            
        
        
        }
        public ArrayList<String> getVeloloués(){
-        String query = "select * from veloo v join location l on v.id = l.velo_id";
+        String query = "select * from velo v join location l on v.id = l.velo_id";
         
         ArrayList<String> loués = new ArrayList<>();
         

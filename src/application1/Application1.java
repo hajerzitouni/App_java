@@ -5,84 +5,71 @@
  */
 package application1;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter; 
 import java.sql.Date;  
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.application.Application;
+import static javafx.application.Application.launch;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 
 /**
  *
  * @author Hajer
  */
-public class Application1 {
+public class Application1 extends Application {
 
-    /**
+   
+      @Override
+      public void start(Stage primaryStage) {
+        try {
+            
+        // Parent root = FXMLLoader.load(getClass().getResource("/gui/ajoutlocation.fxml"));
+         //   Parent root = FXMLLoader.load(getClass().getResource("/gui/afficherlocation.fxml"));
+           //Parent root = FXMLLoader.load(getClass().getResource("/gui/modifierlocation.fxml"));
+       //Parent root = FXMLLoader.load(getClass().getResource("/gui/addvelo.fxml"));
+      //Parent root = FXMLLoader.load(getClass().getResource("/gui/affichervelo.fxml"));
+      Parent root = FXMLLoader.load(getClass().getResource("/gui/ajoutreclamation.fxml"));
+    // Parent root = FXMLLoader.load(getClass().getResource("/gui/showreclamation.fxml"));
+    //Parent root = FXMLLoader.load(getClass().getResource("/gui/addassurance.fxml"));
+   // Parent root = FXMLLoader.load(getClass().getResource("/gui/showassurance.fxml"));
+ //Parent root = FXMLLoader.load(getClass().getResource("/gui/homev.fxml"));
+ //Parent root = FXMLLoader.load(getClass().getResource("/gui/homev_1.fxml"));
+            Scene scene = new Scene(root);
+            
+            primaryStage.setTitle("location");
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(Application1.class.getName()).log(Level.SEVERE, null, ex);
+        
+}
+      }
+       /**
      * @param args the command line arguments
-     * @throws java.sql.SQLException
      */
     public static void main(String[] args) throws SQLException {
-        // TODO code application logic here
-     
-        //velo v = new velo();
-        //v.setUser_id(2);
-        //v.setPrix(50);
-        //v.setMarque("a");
-        //v.setEtat(0);
-        //v.setNomimage("t");
-        //v.setType(1);
-        //v.setAge(8);
-       // v.setUser_id(5);
-        //veloService.ajouterVelo(v);
-   
-    // ajout velo
-      velooService vs = new velooService();
-     //veloo v = new veloo ("aa");
-        //v.setNom("a");
-       // vs.ajouter(v);
-  //
-        //veloo v1 = new veloo("u");
-        //vs.ajouter2(v1);
-        
-         System.out.println(vs.getAllveloos());
-       // vs.delete(1);
-         //vs.modifier(2, "youssef");
-        //System.out.println(vs.getAllveloos());
-       // vs.recherche("youssef");
-       // System.out.println(vs.recherche("hajer"));
-     // locationService ls = new locationService();
-       //DateTimeFormatter df = DateTimeFormatter.ofPattern("d-MM-yyyy");
-        //String date = "16-08-2016";
-       //String date1="12-06-2018";
-        //String date2="12-06-2018";
-    String str="2020-03-31";  
-    String s="2021-03-31";  
-   Date date=Date.valueOf(str);
-   Date date1 =Date.valueOf(s);
-   locationService ls = new locationService();
-    //  location l1 = new location( 1,3,date,date1,"loc2",0);
-      //  ls.ajouter2(l1);
+    
+    
+       launch(args);
+    //  locationService ls = new locationService();
+      //Date date1 = Date.valueOf("2020-03-30");
+        //     Date date2 = Date.valueOf("2020-03-3");
+       //location l = new location(date1,date2,"test");
+  //ls.ajouter3(l, 5);
        
-      // location l = new location ();
-     // ls.modifier(1, 5, 3, date,date, null, 80);
-       //ls.Edit(l, 2);
-       //System.out.println(ls.getAlllocations());
-       //ls.delete(1);
-       //System.out.println(ls.getAlllocations());
-       reclamationService rs = new reclamationService();
-       reclamation r = new reclamation ();
-       //rs.ajouter(r);
-      //System.out.println(rs.getAllreclam());
-      //rs.modifier(1, r);
-        //System.out.println(rs.recherche("bhym"));
-       assuranceService as = new assuranceService();
-       assurance a = new assurance ();
    
-       //  as.ajouter(a);
-      // as.modifier(2, a);
-     //System.out.println(as.getAllassurance());
-//        velooService vs = new velooService();
-     //  System.out.println( vs.getVeloloués());
-     System.out.println(ls.calculPrix(3));
+    
+            
+        
+    
+}
       
        
       
@@ -90,4 +77,4 @@ public class Application1 {
       
     }
     
-}
+

@@ -18,6 +18,11 @@ public class reclamation {
     private Integer id ;
     private Integer user_id;
     private String probleme ;
+
+    public reclamation(String probleme, String titrereclam) {
+        this.probleme = probleme;
+        this.titrereclam = titrereclam;
+    }
     private String titrereclam;
       
     

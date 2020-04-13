@@ -9,7 +9,7 @@ package application1;
  *
  * @author Hajer
  */
-public class assurance {
+public class asurance {
 
    
     private Integer id ;
@@ -18,10 +18,10 @@ public class assurance {
     private Integer montant ;
     private Integer velo_id ;
     
-    public assurance() {
+    public asurance() {
     }
 
-    public assurance(Integer id, Integer location_id, Integer user_id, Integer montant, Integer velo_id) {
+    public asurance(Integer id, Integer location_id, Integer user_id, Integer montant, Integer velo_id) {
         this.id = id;
         this.location_id = location_id;
         this.user_id = user_id;
@@ -29,15 +29,16 @@ public class assurance {
         this.velo_id = velo_id;
     }
 
-    public assurance(Integer id, Integer montant, Integer velo_id) {
+    public asurance(Integer id, Integer montant, Integer velo_id) {
         this.id = id;
         this.montant = montant;
         this.velo_id = velo_id;
     }
 
-    public assurance(Integer montant, Integer velo_id) {
-        this.montant = montant;
+    public asurance(Integer montant, Integer velo_id) {
         this.velo_id = velo_id;
+        this.montant = montant;
+      
     }
 
     

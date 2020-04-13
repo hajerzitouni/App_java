@@ -34,11 +34,11 @@ public class reclamationService {
     
     
   public void ajouter(reclamation r) throws SQLException {
-        String req = "INSERT INTO reclamation(user_id,probleme,titrereclam) VALUES ( ?,?,?) ";
+        String req = "INSERT INTO reclamation(titrereclam,probleme) VALUES ( ?,?) ";
         PreparedStatement pstm = con.prepareStatement(req);
-        pstm.setInt(1, 1);
-        pstm.setString(2, "panne technique");
-        pstm.setString(3, "urgent");
+    
+        pstm.setString(1, r.getTitrereclam());
+        pstm.setString(2, r.getProbleme());
         pstm.executeUpdate();
     }
   
@@ -101,8 +101,8 @@ public class reclamationService {
                 
             int id=rs.getInt(1);
                String titrereclam =rs.getString("titrereclam");
-              
-               reclamation r =new reclamation (id, titrereclam);
+              String probleme =rs.getString("probleme");
+               reclamation r =new reclamation (id, titrereclam,probleme);
             list.add(r);
             }
             

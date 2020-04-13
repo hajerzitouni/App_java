@@ -29,12 +29,12 @@ public class assuranceService {
         con = MyBdd.getInstance().getConnexion();//pour s'assurer que la connexion a la base se fait une seule fois
 
     }
-    public void ajouter(assurance a) throws SQLException {
-        String req = "INSERT INTO assurance (montant,velo_id) VALUES (?,?)";
+    public void ajouter(asurance a) throws SQLException {
+        String req = "INSERT INTO asurance (velo_id,montant) VALUES (?,?)";
          try {
         PreparedStatement pstm = con.prepareStatement(req);
-        pstm.setInt(1, 520);
-        pstm.setInt(2,1);
+        pstm.setInt(1, a.getVelo_id());
+        pstm.setInt(2,a.getMontant());
        
         pstm.executeUpdate();
         System.out.println("assurance added ...");
@@ -43,15 +43,15 @@ public class assuranceService {
         }
      }
     
-      public List<assurance> getAllassurance()throws SQLException  {
+      public List<asurance> getAllassurance()throws SQLException  {
 
-        List<assurance> assurances = new ArrayList<>();
+        List<asurance> assurances = new ArrayList<>();
 
-            String req = "SELECT * FROM assurance";
+            String req = "SELECT * FROM asurance";
             Statement stm = con.createStatement();
             ResultSet rs = stm.executeQuery(req);
             while (rs.next()) {
-             assurance a = new assurance(rs.getInt(1),
+             asurance a = new asurance(rs.getInt(1),
                      rs.getInt("montant"),
                      rs.getInt("velo_id"));
                       assurances.add(a);
@@ -61,14 +61,14 @@ public class assuranceService {
     }
       
   public void delete(int id) throws SQLException {
-        PreparedStatement pre= con.prepareStatement("delete from assurance where Id=?"); //executer une requette parametrer.
+        PreparedStatement pre= con.prepareStatement("delete from asurance where Id=?"); //executer une requette parametrer.
 		pre.setInt(1, id);
 		pre.executeUpdate();
                    System.out.println("assurance deleted ...");     
         
     }
-   public void modifier(int Id,assurance a) {
-     String sql = "UPDATE assurance SET montant=?,velo_id=? WHERE Id='"+Id+"' ";
+   public void modifier(int Id,asurance a) {
+     String sql = "UPDATE asurance SET montant=?,velo_id=? WHERE Id='"+Id+"' ";
 
         PreparedStatement st;
         try {
