@@ -46,6 +46,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import javafx.scene.Node;
 
 /**
  * FXML Controller class
@@ -74,7 +75,12 @@ public class VeloController implements Initializable {
     private ImageView imageView;
    
    
+    @FXML
     private TextArea textArea;
+    @FXML
+    private Button retour;
+    @FXML
+    private TextField tfnbrcomp12;
     
     /**
      * Initializes the controller class.
@@ -96,14 +102,17 @@ public class VeloController implements Initializable {
          if(validateInputs()){
           String namecomp= tfnamecomp.getText();
           String nbrcomp11 = tfnbrcomp111.getText();
+          String nbrcomp12 = tfnbrcomp12.getText();
        int nbrcomp = (Integer) Integer.parseInt(tfnbrcomp1.getText()) + 0;
         int nbrcomp1 = (Integer) Integer.parseInt(tfnbrcomp11.getText()) + 0;
           
   
-      velo v = new velo(namecomp,nbrcomp,nbrcomp1,nbrcomp11,path);
+      velo v = new velo(namecomp,nbrcomp,nbrcomp1,nbrcomp11,path,nbrcomp12 );
+      
          
     vs.ajouter2(v);
-        System.out.println("cours ajouté"); 
+        System.out.println("cours"); 
+        
            
             
             
@@ -193,6 +202,19 @@ public class VeloController implements Initializable {
         
 
 }
+ @FXML
+    private void retour(ActionEvent event) throws IOException {
+         
+         try {
+        javafx.scene.Parent tableview = FXMLLoader.load(getClass().getResource("/gui/Affichervelo.fxml"));
+        Scene sceneview = new Scene(tableview);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(sceneview);
+        window.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }
 
     

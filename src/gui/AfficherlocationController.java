@@ -49,8 +49,6 @@ public class AfficherlocationController implements Initializable {
     private TableColumn<?, ?> id;
     @FXML
     private TableColumn<?, ?> end;
-     @FXML
-    
     private TableColumn<?, ?> velo_id;
     @FXML
     private TableColumn<?, ?> prix;
@@ -58,6 +56,8 @@ public class AfficherlocationController implements Initializable {
     private Button delete;
       @FXML
     private Button edit;
+    @FXML
+    private Button update;
     
     /**
      * Initializes the controller class.
@@ -74,7 +74,6 @@ public class AfficherlocationController implements Initializable {
          start.setCellValueFactory(new PropertyValueFactory<>("date_debut"));
          end.setCellValueFactory(new PropertyValueFactory<>("date_fin"));
 
-        velo_id.setCellValueFactory(new PropertyValueFactory<>("velo_id"));
          prix.setCellValueFactory(new PropertyValueFactory<>("prixloc")); 
            id.setCellValueFactory(new PropertyValueFactory<>("id")); 
      
@@ -120,6 +119,7 @@ public class AfficherlocationController implements Initializable {
    if(!table.getSelectionModel().getSelectedItems().isEmpty()){
                locationService ls = new locationService ();
            ls.delete(table.getSelectionModel().getSelectedItems().get(0).getId());
+          
          load();
         }
        else{
@@ -169,6 +169,17 @@ public class AfficherlocationController implements Initializable {
     
 
 }
+
+    @FXML
+    private void update(ActionEvent event) throws SQLException {
+        
+        Date a = table.getSelectionModel().getSelectedItems().get(0).getDate_fin();
+         java.util.Date now = new java.util.Date();
+          if (now.compareTo(a) >0) {
+            ls.delete(table.getSelectionModel().getSelectedItems().get(0).getId());
+         load();
+          }
+    }
 
 }
    

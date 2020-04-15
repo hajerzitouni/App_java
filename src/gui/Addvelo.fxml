@@ -31,14 +31,17 @@
             </Label>
             <Label layoutX="48.0" layoutY="165.0" text="marque" />
             <Label layoutX="48.0" layoutY="198.0" text="age" />
-            <Button fx:id="btnAjout" layoutX="392.0" layoutY="367.0" mnemonicParsing="false" onAction="#ajouter" text="Add" />
+            <Button fx:id="btnAjout" layoutX="392.0" layoutY="367.0" mnemonicParsing="false" onAction="#ajouter" style="-fx-background-color: green;" text="Ajouter" textFill="WHITE" />
             <Label layoutX="46.0" layoutY="239.0" prefHeight="9.0" prefWidth="73.0" text="prix" />
             <TextField fx:id="tfnbrcomp1" layoutX="186.0" layoutY="235.0" />
             <TextField fx:id="tfnbrcomp11" layoutX="186.0" layoutY="194.0" />
             <TextField fx:id="tfnbrcomp111" layoutX="186.0" layoutY="161.0" />
-            <Button fx:id="btnImportImage" layoutX="203.0" layoutY="367.0" mnemonicParsing="false" onAction="#importer" text="import" />
+            <Button fx:id="btnImportImage" layoutX="203.0" layoutY="367.0" mnemonicParsing="false" onAction="#importer" style="-fx-background-color: blue;" text="import" textFill="WHITE" />
             <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" layoutX="352.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true" />
             <TextArea fx:id="textArea" layoutX="261.0" layoutY="361.0" prefHeight="17.0" prefWidth="67.0" />
+            <Button fx:id="retour" layoutX="57.0" layoutY="367.0" mnemonicParsing="false" onAction="#retour" style="-fx-background-color: grey;" text="Retour" textFill="WHITE" />
+            <Label layoutX="46.0" layoutY="275.0" prefHeight="9.0" prefWidth="73.0" text="Dispo" />
+            <TextField fx:id="tfnbrcomp12" layoutX="187.0" layoutY="271.0" />
          </children>
       </AnchorPane>
    </children>

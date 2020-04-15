@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class MyBdd {
     private static MyBdd instance;
     private Connection connexion;
-    private String url = "JDBC:mysql://localhost:3306/piivelo";
+    private String url = "JDBC:mysql://localhost:3306/pijava";
     private String user = "root";
     private String password = "";
 

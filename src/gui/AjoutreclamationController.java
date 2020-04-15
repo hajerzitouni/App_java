@@ -58,7 +58,11 @@ public class AjoutreclamationController implements Initializable {
            rs.ajouter(r);
               
         System.out.println("reclamation ajouté"); 
-           
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Merci pour votre reclamation cher client !");
+            alert.showAndWait();
             
             
         }

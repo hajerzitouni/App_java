@@ -81,7 +81,6 @@ public class ModifierlocationController implements Initializable {
          start.setCellValueFactory(new PropertyValueFactory<>("date_debut"));
          end.setCellValueFactory(new PropertyValueFactory<>("date_fin"));
 
-        veloi.setCellValueFactory(new PropertyValueFactory<>("velo_id"));
          
          
      

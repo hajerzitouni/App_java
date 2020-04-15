@@ -5,8 +5,10 @@
  */
 package gui;
 
+import application1.asurance;
 import application1.locationn;
 import application1.locationService;
+import application1.velooService;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -18,7 +20,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -26,6 +31,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -52,11 +58,15 @@ public class ShowlocationController implements Initializable {
     @FXML
     private Button delete;
     @FXML
-    private Button edit;
-    @FXML
-    private TextArea assurance;
-    @FXML
     private Button calculprix;
+    @FXML
+    private TableView<asurance> tablea;
+    @FXML
+    private TableColumn<?, ?> asuranceloc;
+    @FXML
+    private Button confirmer;
+    @FXML
+    private Button retour;
  
 
     /**
@@ -70,23 +80,25 @@ public class ShowlocationController implements Initializable {
     @FXML
     private void delete(ActionEvent event) throws SQLException {
     
-   ArrayList<String> assurancel= new ArrayList<>();
+
         if(!table.getSelectionModel().getSelectedItems().isEmpty()){
                locationService ls = new locationService ();
-           assurancel= ls.afficherassurance(table.getSelectionModel().getSelectedItems().get(0).getId());
+               ObservableList<asurance> assurancel= FXCollections.observableArrayList();
+           assurancel=ls.afficherassurance(table.getSelectionModel().getSelectedItems().get(0).getId());
             
    // assurance.setText("100");
-         for(String a : assurancel){
-            assurance.setText(a + "\n");
+        // for(String a : assurancel){
+           // assurance.setText(a + "\n");
             // output += s.toString() + "\n";
              
                               // }//
-                 
+                 asuranceloc.setCellValueFactory(new PropertyValueFactory<>("montant"));
                  
                
-
+ tablea.setItems(assurancel);
+        
        
-        }}
+        }
        else{
            
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -101,9 +113,6 @@ public class ShowlocationController implements Initializable {
     }
     }
 
-    @FXML
-    private void edit(ActionEvent event) {
-    }
     
      public void load(Integer id) throws SQLException {
          ObservableList<locationn> location = FXCollections.observableArrayList();
@@ -156,6 +165,7 @@ public class ShowlocationController implements Initializable {
                locationService ls = new locationService ();
            ls.calculPrix(table.getSelectionModel().getSelectedItems().get(0).getId());
          load ();
+         
         }
        else{
            
@@ -171,5 +181,42 @@ public class ShowlocationController implements Initializable {
     }
   
     }
+
+    @FXML
+    private void confirmer(ActionEvent event) throws SQLException {
+      if(!table.getSelectionModel().getSelectedItems().isEmpty()){
+             
+         velooService vs = new velooService ();
+         vs.etatvelo(table.getSelectionModel().getSelectedItems().get(0).getId());
+        }
+       else{
+           
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText("aucun élément 'a ètè séléctionné");
+        alert.showAndWait();
+
+           
+        
+       
+    }
+  
+    }
+
+     @FXML
+    private void retour(ActionEvent event) throws IOException {
+         
+         try {
+        javafx.scene.Parent tableview = FXMLLoader.load(getClass().getResource("/gui/Affichervelo.fxml"));
+        Scene sceneview = new Scene(tableview);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(sceneview);
+        window.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    }
     
-}
+

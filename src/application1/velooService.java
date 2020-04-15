@@ -38,7 +38,7 @@ public class velooService {
         //try {
         //String req = "INSERT INTO velo (`user_id` ,`prix`,`marque`,`type`,`nomimage`, `age`, `etat`, `nomvelo`) VALUES ('"+v.getUser_id()+"','"+v.getPrix()+"','"+v.getMarque()+"','"+v.getType()
               //  +"','"+v.getNomimage()+"','"+v.getAge()+"','"+v.getEtat()+"','"+v.getNomvelo()+"')";
-        String sql = "insert into veloo (nom) values ('" + v.getNom()+"')";
+        String sql = "insert into veloo (nomvelo) values ('" + v.getNomvelo()+"')";
         System.out.println(sql);
         Statement stm = con.createStatement();
         stm.executeUpdate(sql);
@@ -52,13 +52,14 @@ public class velooService {
          
 
   public void ajouter2(velo v) throws SQLException {
-        String req = "INSERT INTO `velo` (nomvelo,prix,age,marque,image ) VALUES ( ?,?,?,?,?) ";
+        String req = "INSERT INTO `velo` (nomvelo,prix,age,marque,image,etat1) VALUES (?,?,?,?,?,?) ";
         PreparedStatement pstm = con.prepareStatement(req);
-        pstm.setString(1, v.getNom());
+        pstm.setString(1, v.getNomvelo());
         pstm.setInt(2, v.getPrix());
         pstm.setInt(3, v.getAge());
          pstm.setString(4, v.getMarque());
          pstm.setString(5,v.getImage());
+         pstm.setString(6,v.getEtat1());
         
         pstm.executeUpdate();
     }
@@ -82,7 +83,8 @@ public List<velo> getAllveloos()throws SQLException  {
                                  rs.getString("marque"),
                                  
                                   rs.getString("Image"),
-                                 rs.getInt("etat"));
+                                 rs.getInt("etat"),
+                                rs.getString("etat1"));
              
              
                       veloos.add(v);
@@ -113,9 +115,9 @@ public List<velo> getAllveloos()throws SQLException  {
         }
        }
 
-       public ObservableList<velo> recherche(String Nom , Integer prix , Integer age , String marque) {
+       public ObservableList<velo> recherche(String nomvelo , Integer prix , Integer age , String marque) {
         
-        String requete = "SELECT * FROM  velo where nom = '"+Nom+"' " ;
+        String requete = "SELECT * FROM  velo where nomvelo = '"+nomvelo+"' " ;
         PreparedStatement pst;
         ObservableList<velo> list= FXCollections.observableArrayList();
             
@@ -127,10 +129,10 @@ public List<velo> getAllveloos()throws SQLException  {
             {
                 
             int id=rs.getInt(1);
-               String nom=rs.getString("nom");
+               String nom=rs.getString("nomvelo");
                
               
-               velo  v =new velo (id, nom,prix,age,marque);
+               velo  v =new velo (id, nomvelo,prix,age,marque);
             list.add(v);
             }
             
@@ -149,17 +151,24 @@ public List<velo> getAllveloos()throws SQLException  {
        
        }
        public ArrayList<String> getVeloloués(){
-        String query = "select * from velo v join location l on v.id = l.velo_id";
-        
+        String query = "select * from velo v join locationn l on v.id = l.velo_id";
+             PreparedStatement ps;
         ArrayList<String> loués = new ArrayList<>();
         
         try {
-            com.mysql.jdbc.PreparedStatement ps = (com.mysql.jdbc.PreparedStatement) con.prepareStatement(query);
-       
+           // com.mysql.jdbc.PreparedStatement ps = (com.mysql.jdbc.PreparedStatement) con.prepareStatement(query);
+       ps = con.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                loués.add(rs.getString("nom"));
-                loués.add(rs.getString("id"));
+                
+                loués.add(rs.getString("nomvelo"));
+                loués.add(rs.getString("prix"));
+                loués.add(rs.getString("age"));
+                loués.add(rs.getString("marque"));
+                loués.add(rs.getString("image"));
+                 loués.add(rs.getString("etat"));
+                
+                
             }
             System.out.println("liste des vélos loués ");
         } catch (SQLException ex) {
@@ -167,7 +176,23 @@ public List<velo> getAllveloos()throws SQLException  {
         }
         return loués;
     }
-       
+        public ArrayList<String> etatvelo(int id )throws SQLException 
+          {
+               
+              
+              ArrayList<String> etat= new ArrayList<>();
+             
+                String req ="UPDATE velo v INNER JOIN locationn l ON v.id = l.velo_id SET etat1= 'non' WHERE l.id='"+id+"'";
+              PreparedStatement ste = con.prepareStatement(req);
+                    System.out.println(req);
+               //ste.setInt(1, id);
+             //  ResultSet rs = ste.executeQuery(); 
+             // while(rs.next()){
+              //a=rs.getInt("nb");
+               // System.out.println(a);}
+                            ste.executeUpdate();
+               return etat ;}
+          
 
     
 }

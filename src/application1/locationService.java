@@ -5,6 +5,7 @@
  */
 package application1;
 
+import static application1.Application1.user_id;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -219,20 +220,26 @@ public class locationService {
 
     }
  
-  public ArrayList<String> afficherassurance(int id )throws SQLException 
+  public ObservableList<asurance> afficherassurance(int id )throws SQLException 
           {
-               int a=0;
+               
               
-              ArrayList<String> assurancel= new ArrayList<>();
+             // ArrayList<String> assurancel= new ArrayList<>();
+              ObservableList<asurance> assurancel= FXCollections.observableArrayList();
               String req = "SELECT montant as nb from asurance a join locationn l on l.velo_id=a.velo_id WHERE l.id='"+id+"' "; 
               PreparedStatement ste = con.prepareStatement(req);
                //ste.setInt(1, id);
                ResultSet rs = ste.executeQuery(); 
               while(rs.next()){
-              a=rs.getInt("nb");
-                System.out.println(a);}
-                               
+                  
+            int montant =rs.getInt("nb");
+              asurance a = new asurance (montant);
+             // a=rs.getInt("nb");
+                //System.out.println(a);}
+              
+                         assurancel.add(a);   }    
                return assurancel ;}
+          
   
   
 
@@ -282,11 +289,28 @@ public class locationService {
      }
        
  public void  ajouter3(locationn l, int velo_id) throws SQLException {   
-         String sql = "insert into locationn (velo_id,date_debut,date_fin,nomlocation) values ('"+velo_id+"','"+l.getDate_debut()+"','"+l.getDate_fin()+"','"+l.getNomlocation()+"')";
+         String sql = "insert into locationn (user_id,velo_id,date_debut,date_fin,nomlocation) values ('"+user_id+"','"+velo_id+"','"+l.getDate_debut()+"','"+l.getDate_fin()+"','"+l.getNomlocation()+"')";
         System.out.println(sql);
         Statement stm = con.createStatement();
         stm.executeUpdate(sql);
         System.out.println("loc added ...");
          //b = true;
     }
+ 
+  public   Date getdate(int id) throws SQLException {
+        //locationn l = new locationn();
+         Date a = null ;
+        String req = "SELECT date_fin FROM locationn l join  velo v  on  l.velo_id= v.id WHERE v.id = ?";
+        PreparedStatement pre = con.prepareStatement(req);
+        pre.setInt(1, id);
+        ResultSet rs = pre.executeQuery();
+        while (rs.next()){
+            
+            a=rs.getDate("date_fin");
+           
+                        
+        }
+   return a ;
+        
+  }
 }

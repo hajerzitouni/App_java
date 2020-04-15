@@ -14,10 +14,31 @@ public class velo {
    
 
     Integer id ;
-    String nomvelo ;
+
+    
+   String nomvelo ;
+   Integer prix ; 
+    Integer age ;
+    String marque ;
+     String Image;
+     Integer etat ;    
+    String etat1;
+
+    public velo(Integer id, String nomvelo, Integer prix, Integer age, String marque, String Image, Integer etat, String etat1) {
+        this.id = id;
+        this.nomvelo = nomvelo;
+        this.prix = prix;
+        this.age = age;
+        this.marque = marque;
+        this.Image = Image;
+        this.etat = etat;
+        this.etat1 = etat1;
+    }
+   
 
    
-    Integer prix ; 
+   
+    
 
     public velo(Integer id, String nomvelo, Integer prix, Integer age, String marque, String Image, Integer etat) {
         this.id = id;
@@ -28,8 +49,7 @@ public class velo {
         this.Image = Image;
         this.etat = etat;
     }
-    Integer age ;
-    String marque ;
+   
 
     public String getImage() {
         return Image;
@@ -39,7 +59,7 @@ public class velo {
         this.Image = Image;
     }
 
-    String Image;
+   
 
     public velo(String nomvelo, Integer prix, Integer age, String marque, String Image, Integer etat) {
         this.nomvelo= nomvelo;
@@ -58,10 +78,28 @@ public class velo {
         this.Image = Image;
     }
     
-    Integer etat ;
-   
+    
+
+    public String getEtat1() {
+        return etat1;
+    }
+
+    public void setEtat1(String etat1) {
+        this.etat1 = etat1;
+    }
 
    
+   
+   
+
+    public velo(String nomvelo, Integer prix, Integer age, String marque, String Image, String etat1) {
+        this.nomvelo = nomvelo;
+        this.prix = prix;
+        this.age = age;
+        this.marque = marque;
+        this.Image = Image;
+        this.etat1 = etat1;
+}
     
 
    
@@ -105,13 +143,7 @@ public class velo {
         this.id = id;
     }
 
-    public String getNom() {
-        return nomvelo;
-    }
-
-    public void setNom(String nomvelo) {
-        this.nomvelo = nomvelo;
-    }
+    
     public Integer getPrix() {
         return prix;
     }
@@ -134,6 +166,13 @@ public class velo {
     public void setMarque(String marque) {
         this.marque = marque;
     }
+    public String getNomvelo() {
+        return nomvelo;
+    }
+
+    public void setNomvelo(String nomvelo) {
+        this.nomvelo = nomvelo;
+    }
 
    
  
@@ -145,11 +184,11 @@ public Integer getEtat() {
         this.etat = etat;
     }
    
-
-  
  @Override
     public String toString() {
-        return "veloo{" + "id=" + id + ", nom=" + nomvelo+ ", prix=" + prix + ", age=" + age + ", marque=" + marque + ", Image=" + Image + ", etat=" + etat + '}';
+        return "velo{" + "id=" + id + ", nomvelo=" + nomvelo + ", prix=" + prix + ", age=" + age + ", marque=" + marque + ", Image=" + Image + ", etat=" + etat + ", etat1=" + etat1 + '}';
     }
+  
+ 
 
 }

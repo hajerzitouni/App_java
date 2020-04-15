@@ -44,7 +44,6 @@ public class AfficherveloController implements Initializable {
     @FXML
     private TableView<velo> table;
     velooService vs = new velooService ();
-    @FXML
     private TableColumn<?, ?> namecomp;
     @FXML
     private TableColumn<?, ?> start;
@@ -52,20 +51,25 @@ public class AfficherveloController implements Initializable {
     private TableColumn<?, ?> id;
     @FXML
     private TableColumn<?, ?> end;
-    @FXML
     private TableColumn<?, ?> etat;
     @FXML
     private TableColumn<?, ?> prix;
-    @FXML
-    private Button delete;
-    @FXML
-    private Button edit;
     @FXML
     private ImageView imageview;
      private  velo selectedid;
     @FXML
     private Button louer;
     Integer lastid=0;
+    private TableView<velo> table1;
+    private TableColumn<?, ?> namecomp1;
+    private TableColumn<?, ?> start1;
+    private TableColumn<?, ?> end1;
+    @FXML
+    private TableColumn<?, ?> etat1;
+    private TableColumn<?, ?> prix1;
+    @FXML
+    private TableColumn<?, ?> name;
+   
   
     /**
      * Initializes the controller class.
@@ -78,12 +82,15 @@ public class AfficherveloController implements Initializable {
         
          for(velo  v : vs.getAllveloos())
              veloo.add(v);
+         
             
-         namecomp.setCellValueFactory(new PropertyValueFactory<>("nomvelo"));
+         name.setCellValueFactory(new PropertyValueFactory<>("nomvelo"));
          start.setCellValueFactory(new PropertyValueFactory<>("marque"));
          end.setCellValueFactory(new PropertyValueFactory<>("age"));
-        etat.setCellValueFactory(new PropertyValueFactory<>("etat"));
-         prix.setCellValueFactory(new PropertyValueFactory<>("prix")); 
+        etat1.setCellValueFactory(new PropertyValueFactory<>("etat1"));
+        prix.setCellValueFactory(new PropertyValueFactory<>("prix")); 
+      
+         
          
            
      
@@ -110,7 +117,6 @@ public class AfficherveloController implements Initializable {
 
     
 
-    @FXML
     private void delete(ActionEvent event) throws SQLException {
  if(!table.getSelectionModel().getSelectedItems().isEmpty()){
                
@@ -133,7 +139,6 @@ public class AfficherveloController implements Initializable {
     
     }
 
-    @FXML
     private void edit(ActionEvent event) {
         try {
   javafx.scene.Parent tableview = FXMLLoader.load(getClass().getResource("modifierlocation.fxml"));
@@ -165,6 +170,7 @@ public class AfficherveloController implements Initializable {
 //      t3ayet lel fonction showCommande ta3 controller le5er          
                 ccController.ajouter( vdt);
                 
+                
 //      bch thezzek lel interface lo5ra                
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(new Scene(root));
@@ -182,6 +188,31 @@ public class AfficherveloController implements Initializable {
         }
         
     }
+     public void reresh() {
+      ObservableList<velo> loués = FXCollections.observableArrayList();
+     try {
+         
+        
+         for(velo  v : vs.getAllveloos())
+             loués.add(v);
+            
+         namecomp1.setCellValueFactory(new PropertyValueFactory<>("nomvelo"));
+         start1.setCellValueFactory(new PropertyValueFactory<>("marque"));
+         end1.setCellValueFactory(new PropertyValueFactory<>("age"));
+        etat1.setCellValueFactory(new PropertyValueFactory<>("etat"));
+         prix1.setCellValueFactory(new PropertyValueFactory<>("prix")); 
+         
+           
+     
+     } catch (SQLException ex) {
+         Logger.getLogger(velooService.class.getName()).log(Level.SEVERE, null, ex);
+     }
+
+       
+        table1.setItems(loués);
+        
+    
+    }    
 }
      
   

@@ -74,8 +74,8 @@ public class assuranceService {
         try {
            
             st = con.prepareStatement(sql);
-            st.setInt(1,150);
-            st.setInt(2,4);
+            st.setInt(1,a.getMontant());
+            st.setInt(2,a.getVelo_id());
             
            st.executeUpdate();
         System.out.println("update done!");

@@ -47,6 +47,8 @@ public class ShowassuranceController implements Initializable {
     private Button update;
     @FXML
     private Button delete;
+    @FXML
+    private Button retour;
 
     /**
      * Initializes the controller class.
@@ -71,12 +73,31 @@ public class ShowassuranceController implements Initializable {
         
     
     }    
+     public void load() {
+        ObservableList<asurance> assurance = FXCollections.observableArrayList();
+     try {
+         assuranceService as = new assuranceService();
+        
+         for(asurance  a: as.getAllassurance())
+         assurance.add(a);
+        velo.setCellValueFactory(new PropertyValueFactory<>("velo_id"));
+         montant.setCellValueFactory(new PropertyValueFactory<>("montant"));
+         
+     } catch (SQLException ex) {
+         Logger.getLogger(assuranceService.class.getName()).log(Level.SEVERE, null, ex);
+     }
+
+       
+        table.setItems(assurance);
+        
+    
+    }    
        
 
     @FXML
     private void ajouter(ActionEvent event) {
 try {
-  javafx.scene.Parent tableview = FXMLLoader.load(getClass().getResource("addvelo.fxml"));
+  javafx.scene.Parent tableview = FXMLLoader.load(getClass().getResource("addassurance.fxml"));
             Scene sceneview = new Scene(tableview);
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
             window.setScene(sceneview);
@@ -89,6 +110,17 @@ try {
 
     @FXML
     private void update(ActionEvent event) {
+        try {
+  javafx.scene.Parent tableview = FXMLLoader.load(getClass().getResource("modifierassurance.fxml"));
+            Scene sceneview = new Scene(tableview);
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            window.setScene(sceneview);
+            window.show();
+        }
+         
+      catch (IOException ex) {
+        System.out.println(ex.getMessage());
+        }
     }
 
     @FXML
@@ -96,6 +128,7 @@ try {
          if(!table.getSelectionModel().getSelectedItems().isEmpty()){
            assuranceService as = new assuranceService();
            as.delete(table.getSelectionModel().getSelectedItems().get(0).getId());
+           load();
        
         }
        else{
@@ -111,5 +144,19 @@ try {
        
     }
     }
+
+    @FXML
+    private void retour(ActionEvent event){
+         
+         try {
+        javafx.scene.Parent tableview = FXMLLoader.load(getClass().getResource("/gui/homev.fxml"));
+        Scene sceneview = new Scene(tableview);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(sceneview);
+        window.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
+}
     

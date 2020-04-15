@@ -8,32 +8,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="568.0" prefWidth="718.0" style="-fx-background-color: #3D4956;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AfficherveloController">
+<AnchorPane id="AnchorPane" prefHeight="648.0" prefWidth="792.0" style="-fx-background-color: #3D4956;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AfficherveloController">
    <children>
-      <TableView fx:id="table" layoutX="5.0" layoutY="93.0" onMouseClicked="#afficherImage" prefHeight="313.0" prefWidth="404.0">
+      <TableView fx:id="table" layoutX="19.0" layoutY="85.0" onMouseClicked="#afficherImage" prefHeight="301.0" prefWidth="447.0">
         <columns>
-          <TableColumn fx:id="namecomp" prefWidth="95.0" text="velo" />
+          <TableColumn fx:id="name" prefWidth="95.0" text="velo" />
             <TableColumn fx:id="start" prefWidth="68.0" text="marque" />
             <TableColumn fx:id="id" prefWidth="75.0" text="id" visible="false" />
             <TableColumn fx:id="end" prefWidth="68.0" text="age" />
-            <TableColumn fx:id="etat" prefWidth="84.0" text="etat" />
-          <TableColumn fx:id="prix" prefWidth="93.0" text="prix" />
+            <TableColumn fx:id="etat1" prefWidth="84.0" text="disponible" />
+          <TableColumn fx:id="prix" prefWidth="131.0" text="prix" />
         </columns>
       </TableView>
-      <Label layoutX="34.0" layoutY="30.0" text="liste des velos" textFill="#fcfafa">
+      <Label layoutX="28.0" layoutY="21.0" text="liste des velos" textFill="#fcfafa">
          <font>
             <Font name="System Italic" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="edit" layoutX="87.0" layoutY="446.0" mnemonicParsing="false" onAction="#edit" prefHeight="15.0" prefWidth="106.0" style="-fx-background-color: green;" text="edit" textFill="#f8f8f8">
-         <font>
-            <Font size="14.0" />
-         </font></Button>
-      <Button fx:id="delete" layoutX="217.0" layoutY="446.0" mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="106.0" style="-fx-background-color: red;" text="delete" textFill="WHITE">
-         <font>
-            <Font size="14.0" />
-         </font></Button>
-      <ImageView fx:id="imageview" fitHeight="150.0" fitWidth="200.0" layoutX="503.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="louer" layoutX="409.0" layoutY="449.0" mnemonicParsing="false" onAction="#louer" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: blue;" text="Louer" textFill="#f2f0f0" />
+      <ImageView fx:id="imageview" fitHeight="150.0" fitWidth="200.0" layoutX="554.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="louer" layoutX="67.0" layoutY="428.0" mnemonicParsing="false" onAction="#louer" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: blue;" text="Louer" textFill="#f2f0f0" />
    </children>
 </AnchorPane>

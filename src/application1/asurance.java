@@ -15,6 +15,10 @@ public class asurance {
     private Integer id ;
     private Integer location_id;
     private Integer user_id;
+
+    public asurance(Integer montant) {
+        this.montant = montant;
+    }
     private Integer montant ;
     private Integer velo_id ;
     

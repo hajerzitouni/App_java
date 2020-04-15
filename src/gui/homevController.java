@@ -11,13 +11,19 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -30,7 +36,7 @@ public class homevController implements Initializable {
     @FXML
     private Button vente;
     @FXML
-    private Button locationB;
+    private MenuItem locationB;
     @FXML
     private Button rep;
     @FXML
@@ -47,6 +53,12 @@ public class homevController implements Initializable {
     private AnchorPane content;
     @FXML
     private ImageView image;
+    @FXML
+    private Button notif;
+    @FXML
+    private MenuItem velo;
+    @FXML
+    private MenuItem assurance;
  
     /**
      * Initializes the controller class.
@@ -104,5 +116,52 @@ public class homevController implements Initializable {
         content.getChildren().add(parent);
         content.toFront();
     }
+
+    @FXML
+    private void notif(ActionEvent event) {
+        Image img = new Image ("/gui/stick.png");
+     Notifications notificationBuilder = Notifications.create()
+             .title("Notifications")
+             .text("vous avez des nouvelles reclamations ..!")
+             .graphic(new ImageView(img))
+             .hideAfter(Duration.seconds(5))
+             .position(Pos.TOP_RIGHT)
+             .onAction(new EventHandler<ActionEvent>() {
+               
+                 public void hanle (ActionEvent event){
+               System.out.println("Clicked on");
+                 
+                  }
+
+         @Override
+         public void handle(ActionEvent event) {
+             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         }
+             });
+     notificationBuilder.darkStyle();
+     
+     notificationBuilder.show();
+             }
+
+    @FXML
+    private void velo(ActionEvent event) throws IOException {
+         content.getChildren().clear();
+        Parent parent = FXMLLoader.load(getClass().getResource("/gui/affichervelo_1.fxml"));
+        content.getChildren().add(parent);
+        content.toFront();
+    }
+
+    @FXML
+    private void assurance(ActionEvent event) throws IOException {
+         content.getChildren().clear();
+        Parent parent = FXMLLoader.load(getClass().getResource("/gui/showassurance.fxml"));
+        content.getChildren().add(parent);
+        content.toFront();
+    }
+             
+             
+            
+        
+    }
     
-}
+
